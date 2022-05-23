@@ -1,0 +1,22 @@
+
+<div ng-controller="listCtrl">
+    <span>S o r t : </span>
+    <select ng-model="order" style="width: 100px;">
+        <option value="id">ID</option>
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+    </select> <br> <br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <!-- Thêm thuộc tính orderBy để sắp xêp theo alphabet-->
+        <tr ng-repeat="f in list | orderBy:order">
+            <td>{{f.id}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.price}}</td>
+        </tr>
+    </table>
+</div>

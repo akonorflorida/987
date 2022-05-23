@@ -1,0 +1,18 @@
+
+<div ng-controller="listCtrl">
+    <span>S e a r c h : </span>
+    <input type="text" ng-model="name"> <br> <br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <!-- Thêm thuộc tính filter để dò tìm đối tượng-->
+        <tr ng-repeat="f in list | filter:name">
+            <td>{{f.id}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.price}}</td>
+        </tr>
+    </table>
+</div>

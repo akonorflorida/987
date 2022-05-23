@@ -1,0 +1,70 @@
+<style>
+    .bd {
+        width: 500px;
+    }
+
+    input {
+        width: 220px;
+        height: 20px;
+        margin: 5px;
+        border: none;
+        border-bottom: 1px solid blue;
+        outline: none;
+    }
+
+    input[type="submit"] {
+        border: 1px solid blue;
+        width: 220px;
+        height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    input[type="submit"]:hover {
+        border: 2px solid blue;
+        width: 220px;
+        height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 5px;
+        color: rgba(0, 0, 210, 0.977);
+    }
+    .error{
+        font-size: 15px;
+        color: red;
+    }
+</style>
+<div ng-controller="deleteCtrl">
+    <span>A d d + D e l e t e :</span> <br> <br>
+    <div class="bd" ng-controller="addCtrl">
+        <form name="myForm" novalidate> <!-- novalidate: Xóa báo lỗi mặc định của trình duyệt-->
+            <input type="text" placeholder="myID" name="myID" ng-model="myID" required>
+            <span class="error" ng-show="myForm.myID.$dirty && myForm.myID.$error.required">x ID is required</span> <br> 
+
+            <input type="text" placeholder="myName" name="myName" ng-model="myName" required>
+            <span class="error" ng-show="myForm.myName.$dirty && myForm.myName.$error.required">x Name is required</span> <br>
+
+            <input type="text" placeholder="myPrice" name="myPrice" ng-model="myPrice" required>
+            <span class="error" ng-show="myForm.myPrice.$dirty && myForm.myPrice.$error.required">x Price is required</span> <br>
+
+            <input type="submit" value="Add" ng-disabled="myForm.myID.$dirty && myForm.myID.$error.required  ||
+            myForm.myName.$dirty && myForm.myName.$error.required || myForm.myPrice.$dirty && myForm.myPrice.$error.required || myForm.$invalid" ng-click="addList()"> <br> <br>
+        </form>
+    </div>
+
+    <table border="1" ng-controller="listCtrl">
+        <tr>
+            <th style="width: 100px; text-align: center;">ID</th>
+            <th style="width: 100px; text-align: center;">Name</th>
+            <th style="width: 100px; text-align: center;">Price</th>
+            <th style="width: 100px; text-align: center;">Delete</th>
+        </tr>
+        <tr ng-repeat="f in list">
+            <td style="width: 100px; text-align: center;">{{f.id}}</td>
+            <td style="width: 100px; text-align: center;">{{f.name}}</td>
+            <td style="width: 100px; text-align: center;">{{f.price}}</td>
+            <td style="width: 100px; text-align: center;"><button ng-click="removeList($index)">Delete</button></td>
+        </tr>
+    </table>
+</div>
